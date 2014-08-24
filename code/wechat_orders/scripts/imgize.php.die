@@ -1,0 +1,39 @@
+<?php
+
+define('DS', DIRECTORY_SEPARATOR);
+define('APP_ROOT', dirname(getcwd()) . DS);
+define('UPLOAD_PATH', APP_ROOT . 'upload' . DS);
+
+$malls = array();
+$foods = array();
+
+$db = new mysqli();
+$db->connect('localhost', 'wechat', 'wechat', 'wechat_orders');
+$db->query('set names utf8');
+$res = $db->query('select * from wechat_mall');
+
+while($row = $res->fetch_array()){
+    $data = substr($row['img'], strlen('data:image/jpeg;base64,'));
+    $data = base64_decode($data);
+    $filename = uniqid() . '.jpg';
+    file_put_contents(UPLOAD_PATH . $filename, $data);
+    $malls[$row['id']] = $filename;
+}
+
+foreach($malls as $id=>$filename){
+    $db->query("update wechat_mall set img='$filename' where id=$id");
+}
+
+
+$res = $db->query("select * from wechat_food where img!=''");
+while($row = $res->fetch_array()){
+    $data = substr($row['img'], strlen('data:image/jpeg;base64,'));
+    $data = base64_decode($data);
+    $filename = uniqid() . '.jpg';
+    file_put_contents(UPLOAD_PATH . $filename, $data);
+    $foods[$row['id']] = $filename;
+}
+
+foreach($foods as $id=>$filename){
+    $db->query("update wechat_food set img='$filename' where id=$id");
+}

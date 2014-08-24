@@ -1,0 +1,17 @@
+* { margin: 0; padding: 0; }
+td { vertical-align: middle !important; }
+.container {
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.shop-img {
+    width: 80px;
+}
+.clear {
+    clear: both;
+}
+.red {
+    color: red;
+}
