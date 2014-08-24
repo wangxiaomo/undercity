@@ -1,0 +1,4 @@
+0 2 * * * bash /home/wangxiaomo/crons/db_backup.sh
+0 2 * * * bash /home/wangxiaomo/crons/db_full_backup.sh
+0 2 * * * bash /home/wangxiaomo/crons/web_full_backup.sh
+0 4 * * * bash /home/wangxiaomo/crons/clear.sh

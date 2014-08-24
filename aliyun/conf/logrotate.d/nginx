@@ -1,0 +1,15 @@
+/data/logs/nginx/*log
+/data/logs/nginx/wechat_orders/*.log
+{
+    daily
+    rotate 20
+    missingok
+    ifempty
+    nocompress
+    copytruncate
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 $(cat /var/run/nginx.pid 2>/dev/null) 2>/dev/null || :
+    endscript
+}
+
