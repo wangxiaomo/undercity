@@ -34,5 +34,6 @@
     WeixinJSBridge.on('menu:share:weibo', function(argv) {
       WeixinJSBridge.invoke('shareWeibo', getShareData(), function(res){});
     });
+    WeixinJSBridge.call('hideToolbar');
   }, false);
 </script>
